@@ -13,7 +13,7 @@ on:
 
 jobs:
   windows-build:
-    runs on: windows-latest
+    runs-on: windows-latest
     steps:
       - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
         with:
