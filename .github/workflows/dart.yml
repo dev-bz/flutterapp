@@ -26,10 +26,12 @@ jobs:
       - name: Build project for Windows
         run: |
           flutter build windows
-          cmd /r dir /s /b
-          #find build/linux/x64/release/bundle -type f
-          #tar -zcvf artifacts/flutterapp.tar.gz -C build/linux/x64/release/bundle .
-
+          cmd /r dir /s build/windows/runner
+      - name: Output
+        uses: actions/upload-artifact@v2
+        with:
+          name: flutter-apk
+          path: build/windows/runner/Release
   android-build:
     needs: windows-build
     runs-on: ubuntu-latest
