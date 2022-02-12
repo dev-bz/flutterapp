@@ -20,7 +20,7 @@ jobs:
           channel: stable
       - uses: actions/checkout@v2
       - name: Build project for Windows
-        run: flutter build windows
+        run: flutter build windows -v
       - name: List files
         run: cmd /r dir /b /s build\\windows\\runner\\Release
       - name: Output
@@ -40,9 +40,7 @@ jobs:
           channel: stable
       - uses: actions/checkout@v2
       - name: Build apk
-        run: |
-          flutter build apk
-          find build -name "*.apk"
+        run: flutter build apk -v
       - name: Store APK
         uses: actions/upload-artifact@v2
         with:
@@ -59,8 +57,9 @@ jobs:
         run: flutter config --enable-linux-desktop
       - uses: actions/checkout@v2
       - name: Build project for Linux
+        run: flutter build linux -v
+      - name: Build package
         run: |
-          flutter build linux
           find build/linux/x64/release/bundle -type f
           tar -zcvf build/flutter-linux.tar.gz -C build/linux/x64/release/bundle .
 
