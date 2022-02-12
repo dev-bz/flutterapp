@@ -15,12 +15,14 @@ jobs:
   windows-build:
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Show help
-        run: dir /?
+        run: |
+          dir --help
+          dir -r
       - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
         with:
           channel: stable
-      - uses: actions/checkout@v2
       - name: Build project for Windows
         run: |
           flutter build windows
