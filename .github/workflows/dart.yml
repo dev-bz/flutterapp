@@ -17,7 +17,8 @@ jobs:
 
     steps:
       - name: Install ninja
-        run: sudo apt update && sudo apt install ninja-build
+        run: sudo apt update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
+
       - uses: actions/checkout@v2
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
