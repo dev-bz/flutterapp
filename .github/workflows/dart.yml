@@ -35,10 +35,13 @@ jobs:
 
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
-        run: flutter build linux
+        run: |
+          flutter build linux
+          find build -type f
+          find /usr/local -type f
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
       # want to change this to 'flutter test'.
-      - name: Run tests
-        run: flutter test
+      # - name: Run tests
+      #   run: flutter test
