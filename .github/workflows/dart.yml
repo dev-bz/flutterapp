@@ -37,11 +37,17 @@ jobs:
       - name: Analyze project source
         run: |
           flutter build linux
-          find build -type f
-          find /usr/local -name flutterapp
+          find build/linux/x64/release/bundle -type f
+          mkdir -p artifacts
+          tar -zcvf artifacts/flutterapp.tar.gz -C build/linux/x64/release/bundle .
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
       # want to change this to 'flutter test'.
       # - name: Run tests
       #   run: flutter test
+    - name: Store packages
+      uses: actions/upload-artifact@v2
+      with:
+        name: packages
+        path: ./artifacts
