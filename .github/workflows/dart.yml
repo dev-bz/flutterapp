@@ -18,15 +18,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: Show help
         run: |
-          dir --help
-          dir -r
+          cmd /r dir /s /b
       - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
         with:
           channel: stable
       - name: Build project for Windows
         run: |
           flutter build windows
-          dir /B /S
+          cmd /r dir /s /b
           #find build/linux/x64/release/bundle -type f
           #tar -zcvf artifacts/flutterapp.tar.gz -C build/linux/x64/release/bundle .
 
