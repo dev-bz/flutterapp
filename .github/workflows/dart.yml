@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: flutter-apk
-          path: build/app/outputs/flutter-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
   linux-build:
     runs-on: ubuntu-latest
     # needs: android-build
