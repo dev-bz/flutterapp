@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install ninja
+        run: sudo apt install ninja
       - uses: actions/checkout@v2
 
       # Note: This workflow uses the latest stable version of the Dart SDK.
@@ -29,10 +31,6 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-
-      # Uncomment this step to verify the use of 'dart format' on each commit.
-      - name: Install ninja
-        run: pkg install ninja
 
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
