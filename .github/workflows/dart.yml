@@ -23,7 +23,7 @@ jobs:
         with:
           channel: stable
       - name: Build apk
-      - run: |
+        run: |
           flutter build apk
           find build -name "*.apk"
   linux-build:
