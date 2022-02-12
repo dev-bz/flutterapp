@@ -13,7 +13,7 @@ on:
 
 jobs:
   android-build:
-    if: false
+    needs: linux-build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -52,15 +52,15 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-      - name: Analyze project source
+      - name: Build project for Windows
         run: |
           flutter build windows
           find build -type f
           #find build/linux/x64/release/bundle -type f
           #tar -zcvf artifacts/flutterapp.tar.gz -C build/linux/x64/release/bundle .
 
-      - names: Analyze project source
-        runs: |
+      - name: Build project for Linux
+        run: |
           flutter build linux
           find build/linux/x64/release/bundle -type f
           mkdir -p artifacts
