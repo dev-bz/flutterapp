@@ -26,7 +26,7 @@ jobs:
       - name: Build project for Windows
         run: |
           flutter build windows
-          cmd /r dir /s build/windows/runner
+          cmd /r dir /s build\\windows\\runner
       - name: Output
         uses: actions/upload-artifact@v2
         with:
