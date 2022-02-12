@@ -38,7 +38,7 @@ jobs:
         run: |
           flutter build linux
           find build -type f
-          find /usr/local -type f
+          find /usr/local -name flutterapp
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
