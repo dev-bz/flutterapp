@@ -25,7 +25,9 @@ jobs:
       - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
 
       - name: Install dependencies
-        run: flutter pub get
+        run:
+          - flutter config --enable-linux-desktop
+          - flutter pub get
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
       # - name: Verify formatting
