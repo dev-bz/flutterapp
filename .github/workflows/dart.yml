@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: Flutter build
 
 on:
   push:
@@ -15,6 +15,10 @@ jobs:
   windows-build:
     runs-on: windows-latest
     steps:
+      - name: Show help
+        run: |
+          find /?
+          dir /?
       - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
         with:
           channel: stable
@@ -22,7 +26,7 @@ jobs:
       - name: Build project for Windows
         run: |
           flutter build windows
-          find build -type f
+          find build /B /S
           #find build/linux/x64/release/bundle -type f
           #tar -zcvf artifacts/flutterapp.tar.gz -C build/linux/x64/release/bundle .
 
