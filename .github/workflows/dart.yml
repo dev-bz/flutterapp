@@ -46,8 +46,8 @@ jobs:
       # want to change this to 'flutter test'.
       # - name: Run tests
       #   run: flutter test
-    - name: Store packages
-      uses: actions/upload-artifact@v2
-      with:
-        name: packages
-        path: ./artifacts
+      - name: Store packages
+        uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          path: ./artifacts
