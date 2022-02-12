@@ -16,9 +16,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Show help
-        run: |
-          find /?
-          dir /?
+        run: dir /?
       - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
         with:
           channel: stable
@@ -26,7 +24,7 @@ jobs:
       - name: Build project for Windows
         run: |
           flutter build windows
-          find build /B /S
+          dir /B /S
           #find build/linux/x64/release/bundle -type f
           #tar -zcvf artifacts/flutterapp.tar.gz -C build/linux/x64/release/bundle .
 
