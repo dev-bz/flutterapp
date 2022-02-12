@@ -12,8 +12,22 @@ on:
     branches: [ main ]
 
 jobs:
+  windows-build:
+    runs on: windows-latest
+    steps:
+      - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
+        with:
+          channel: stable
+      - uses: actions/checkout@v2
+      - name: Build project for Windows
+        run: |
+          flutter build windows
+          find build -type f
+          #find build/linux/x64/release/bundle -type f
+          #tar -zcvf artifacts/flutterapp.tar.gz -C build/linux/x64/release/bundle .
+
   android-build:
-    needs: linux-build
+    needs: windows-build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -34,7 +48,7 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
   linux-build:
     runs-on: ubuntu-latest
-    # needs: android-build
+    needs: windows-build
     steps:
       - name: Install ninja
         run: sudo apt update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
@@ -52,13 +66,6 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-      - name: Build project for Windows
-        run: |
-          flutter build windows
-          find build -type f
-          #find build/linux/x64/release/bundle -type f
-          #tar -zcvf artifacts/flutterapp.tar.gz -C build/linux/x64/release/bundle .
-
       - name: Build project for Linux
         run: |
           flutter build linux
