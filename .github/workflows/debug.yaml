@@ -38,6 +38,8 @@ jobs:
       - uses: subosito/flutter-action@4389e6cbc6cb8a4b18c628ff96ff90be0e926aa8
         with:
           channel: stable
+      - name: Doctor
+        run: flutter doctor -v
       - uses: actions/checkout@v2
       - name: Build apk
         run: flutter build apk -v --debug
