@@ -41,8 +41,17 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build apk
         run: flutter build apk --target-platform android-arm64 -v --debug
+      - name: Output classes2.dex from apk
+        run: |
+          unzip build/app/outputs/flutter-apk/app-debug.apk build/app/outputs/flutter-apk/classes.dex
+          mv build/app/outputs/flutter-apk/classes.dex build/app/outputs/flutter-apk/classes2.dex
       - name: Doctor
         run: flutter doctor -v
+      - name: Store classes.dex
+        uses: actions/upload-artifact@v2
+        with:
+          name: flutter-classes
+          path: build/app/outputs/flutter-apk/classes2.dex
       - name: Store APK
         uses: actions/upload-artifact@v2
         with:
